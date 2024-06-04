@@ -5,30 +5,6 @@ public class Bishop extends base {
         super(false, height, width, "B", isWhite);
     }
 
-    public static void moveUp(int increment) {
-        /*
-        -4           4
-          -3        3
-            -2     2
-              -1  1
-                B
-        */
-       height += Math.abs(increment);
-       width += increment;
-    }
-
-    public static void moveDown(int increment) {
-        /*
-                B
-              -1  1
-            -2     2
-          -3        3
-        -4           4
-        */
-        height -= Math.abs(increment);
-        width += increment;
-    }
-
     public static boolean move(int[] goal, gameboard GM) {
         if (goal[0] == width || goal[1] == height) {
             return false;
@@ -62,12 +38,33 @@ public class Bishop extends base {
         for (int i = 0; i < Math.abs(goal[0] - width); i++) {
             switch (dir) {
                 case 1:
-                    checkLoc(GM, {})
+                    if (!checkLoc(GM, {width + i, height + i})) {
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (!checkLoc(GM, {width - i, height + i})) {
+                        return false;
+                    }
+                    break;
+                case 3:
+                    if (!checkLoc(GM, {width + i, height - i})) {
+                        return false;
+                    }
+                    break;
+                case 4:
+                    if (!checkLoc(GM, {width - i, height - i})) {
+                        return false;
+                    }
+                    break;
+                default:
+                    return false;
             }
-        }
-    }
+        } // check if any piece obstructs the path (NOT FOR CHECKING TO TAKE)
 
-    public static boolean checkMovement(int[] goal) {
 
+        width = goal[0];
+        height = goal[1];
+        return true;
     }
 }
