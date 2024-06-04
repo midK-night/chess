@@ -1,6 +1,6 @@
 public class King extends base {
-    public King (int height, int width) {
-        super(false, height, width, "K");
+    public King (int height, int width, boolean isWhite) {
+        super(false, height, width, "K", isWhite);
     }
 
     public static move(int dir) {

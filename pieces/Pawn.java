@@ -1,7 +1,7 @@
 public class Pawn extends base {
 
-    public Pawn (int height, int width) {
-        super(false, height, width, "P");
+    public Pawn (int height, int width, boolean isWhite) {
+        super(false, height, width, "P", isWhite);
     }
 
     public static void moveForward() {

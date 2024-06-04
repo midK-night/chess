@@ -3,12 +3,14 @@ public class base {
     private int height;
     private int width;
     private String init;
+    private boolean isWhite;
 
-    public base(isCaptured, height, width, init) {
+    public base(boolean isCaptured, int height, int width, String init, boolean isWhite) {
         this.isCaptured = isCaptured;
         this.height = height;
         this.width = width;
         this.init = init;
+        this.isWhite = isWhite;
     }
 
     public static boolean getCaptured() {
@@ -25,5 +27,10 @@ public class base {
 
     public static String getInit() {
         return init;
+    }
+
+    public static boolean checkLoc(gameboard GM, int[] loc) {
+        boolean isEmptyPiece = GM.chessboard[loc[0]][loc[1]].equals("#");
+        return (!isEmptyPiece);
     }
 }

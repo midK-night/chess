@@ -1,6 +1,8 @@
 public class Bishop extends base {
-    public Bishop (int height, int width) {
-        super(false, height, width, "B");
+    public boolean isWhite;
+
+    public Bishop (int height, int width, boolean isWhite) {
+        super(false, height, width, "B", isWhite);
     }
 
     public static void moveUp(int increment) {
@@ -25,5 +27,9 @@ public class Bishop extends base {
         */
         height -= Math.abs(increment);
         width += increment;
+    }
+
+    public static boolean checkMovement(int[] goal) {
+
     }
 }

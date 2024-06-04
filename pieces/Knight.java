@@ -1,6 +1,6 @@
 public class Knight extends base {
-    public Knight (int height, int width) {
-        super(false, height, width, "N");
+    public Knight (int height, int width, boolean isWhite) {
+        super(false, height, width, "N", isWhite);
     }
 
     public static void move(int dir) {

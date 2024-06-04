@@ -1,6 +1,6 @@
 public class Queen extends base {
-    public Queen (int height, int width) {
-        super(false, height, width, "Q");
+    public Queen (int height, int width, boolean isWhite) {
+        super(false, height, width, "Q", isWhite);
     }
 
     public static void move(int dir, int increment) {
