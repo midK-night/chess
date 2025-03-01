@@ -33,13 +33,9 @@ public class Knight extends Piece {
         if (farUpValid && closeLeftValid) {
             newX = originalX - 1;
             newY = originalY + 2;
-            if (board[Chessboard.convert(newX)][Chessboard.convert(newY)] != null) {
-                if (!board[Chessboard.convert(newX)][Chessboard.convert(newY)]
-                        .isSameTeam(this)) {
-                    temp.add(new Coordinate(newX, newY));
-                }
-            } else {
-                temp.add(new Coordinate(newX, newY));
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX,newY));
             }
         }
         
@@ -47,13 +43,9 @@ public class Knight extends Piece {
         if (farUpValid && closeRightValid) {
             newX = originalX + 1;
             newY = originalY + 2;
-            if (board[Chessboard.convert(newX)][Chessboard.convert(newY)] != null) {
-                if (!board[Chessboard.convert(newX)][Chessboard.convert(newY)]
-                        .isSameTeam(this)) {
-                    temp.add(new Coordinate(newX, newY));
-                }
-            } else {
-                temp.add(new Coordinate(newX, newY));
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX,newY));
             }
         }
         
@@ -61,13 +53,9 @@ public class Knight extends Piece {
         if (farRightValid && closeUpValid) {
             newX = originalX + 2;
             newY = originalY + 1;
-            if (board[Chessboard.convert(newX)][Chessboard.convert(newY)] != null) {
-                if (!board[Chessboard.convert(newX)][Chessboard.convert(newY)]
-                        .isSameTeam(this)) {
-                    temp.add(new Coordinate(newX, newY));
-                }
-            } else {
-                temp.add(new Coordinate(newX, newY));
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX,newY));
             }
         }
         
@@ -75,13 +63,9 @@ public class Knight extends Piece {
         if (farRightValid && closeDownValid) {
             newX = originalX + 2;
             newY = originalY - 1;
-            if (board[Chessboard.convert(newX)][Chessboard.convert(newY)] != null) {
-                if (!board[Chessboard.convert(newX)][Chessboard.convert(newY)]
-                        .isSameTeam(this)) {
-                    temp.add(new Coordinate(newX, newY));
-                }
-            } else {
-                temp.add(new Coordinate(newX, newY));
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX,newY));
             }
         }
         
@@ -89,13 +73,9 @@ public class Knight extends Piece {
         if (farDownValid && closeLeftValid) {
             newX = originalX - 1;
             newY = originalY - 2;
-            if (board[Chessboard.convert(newX)][Chessboard.convert(newY)] != null) {
-                if (!board[Chessboard.convert(newX)][Chessboard.convert(newY)]
-                        .isSameTeam(this)) {
-                    temp.add(new Coordinate(newX, newY));
-                }
-            } else {
-                temp.add(new Coordinate(newX, newY));
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX,newY));
             }
         }
         
@@ -103,27 +83,19 @@ public class Knight extends Piece {
         if (farDownValid && closeRightValid) {
             newX = originalX + 1;
             newY = originalY - 2;
-            if (board[Chessboard.convert(newX)][Chessboard.convert(newY)] != null) {
-                if (!board[Chessboard.convert(newX)][Chessboard.convert(newY)]
-                        .isSameTeam(this)) {
-                    temp.add(new Coordinate(newX, newY));
-                }
-            } else {
-                temp.add(new Coordinate(newX, newY));
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX,newY));
             }
         }
-        
+
         // left up: -2, +1
         if (farLeftValid && closeUpValid) {
             newX = originalX - 2;
             newY = originalY + 1;
-            if (board[Chessboard.convert(newX)][Chessboard.convert(newY)] != null) {
-                if (!board[Chessboard.convert(newX)][Chessboard.convert(newY)]
-                        .isSameTeam(this)) {
-                    temp.add(new Coordinate(newX, newY));
-                }
-            } else {
-                temp.add(new Coordinate(newX, newY));
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX,newY));
             }
         }
         
@@ -131,20 +103,22 @@ public class Knight extends Piece {
         if (farLeftValid && closeDownValid) {
             newX = originalX - 2;
             newY = originalY - 1;
-            if (board[Chessboard.convert(newX)][Chessboard.convert(newY)] != null) {
-                if (!board[Chessboard.convert(newX)][Chessboard.convert(newY)]
-                        .isSameTeam(this)) {
-                    temp.add(new Coordinate(newX, newY));
-                }
-            } else {
-                temp.add(new Coordinate(newX, newY));
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX,newY));
             }
         }
         
         return temp;
     }
 
-    //TODO: extract boolean algo
+    private boolean evalSpot (Piece[][] board, int x, int y) {
+        if (board[Chessboard.convert(x)][Chessboard.convert(y)] != null) {
+            return !this.isSameTeam(board[Chessboard.convert(x)][Chessboard.convert(y)]);
+        } else {
+            return true;
+        }
+    }
     
     private boolean checkMove (int newX, int newY, Chessboard board) {
         possibleSquares = possibleMove(board.getBoard());
