@@ -7,8 +7,8 @@ public class Chessboard {
 
     public Chessboard () {
         chessboard = new Piece[8][8];
-        black = new ArrayList<Piece>();
-        white = new ArrayList<Piece>();
+        black = new ArrayList<>();
+        white = new ArrayList<>();
         init();
     }
 
