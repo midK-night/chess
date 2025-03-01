@@ -22,58 +22,100 @@ public class King extends Piece {
         final boolean downValid = originalY > 1;
         final boolean leftValid = originalX > 1;
         final boolean rightValid = originalX < 8;
+
+        int newX, newY;
         
         // straight up
-        if (upValid && 
-        !board[Chessboard.convert(originalX)][Chessboard.convert(originalY + 1)].isSameTeam(this)) {
-            temp.add(new Coordinate(originalX, originalY + 1));
+        if (upValid) {
+            newX = originalX;
+            newY = originalY + 1;
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX, newY));
+            }
         }
         
         // straight right
-        if (rightValid &&
-        !board[Chessboard.convert(originalX + 1)][Chessboard.convert(originalY)].isSameTeam(this)) {
-            temp.add(new Coordinate(originalX + 1, originalY));
+        if (rightValid) {
+            newX = originalX + 1;
+            newY = originalY;
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX, newY));
+            }
         }
         
         // straight down
-        if (downValid && 
-        !board[Chessboard.convert(originalX)][Chessboard.convert(originalY - 1)].isSameTeam(this)) {
-            temp.add(new Coordinate(originalX, originalY - 1));
+        if (downValid) {
+            newX = originalX;
+            newY = originalY - 1;
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX, newY));
+            }
         }
         
         // straight left
-        if (leftValid &&
-        !board[Chessboard.convert(originalX - 1)][Chessboard.convert(originalY)].isSameTeam(this)) {
-            temp.add(new Coordinate(originalX - 1, originalY));
+        if (leftValid) {
+            newX = originalX - 1;
+            newY = originalY;
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX, newY));
+            }
         }
         
         // up left
-        if (leftValid && upValid &&
-        !board[Chessboard.convert(originalX - 1)][Chessboard.convert(originalY + 1)].isSameTeam(this)) {
-            temp.add(new Coordinate(originalX - 1, originalY + 1));
+        if (leftValid && upValid) {
+            newX = originalX - 1;
+            newY = originalY + 1;
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX, newY));
+            }
         }
         
         // up right
-        if (rightValid && upValid &&
-        !board[Chessboard.convert(originalX + 1)][Chessboard.convert(originalY + 1)].isSameTeam(this)) {
-            temp.add(new Coordinate(originalX + 1, originalY + 1));
+        if (rightValid && upValid) {
+            newX = originalX + 1;
+            newY = originalY + 1;
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX, newY));
+            }
         }
         
         // down right
-        if (rightValid && downValid &&
-        !board[Chessboard.convert(originalX + 1)][Chessboard.convert(originalY - 1)].isSameTeam(this)) {
-            temp.add(new Coordinate(originalX + 1, originalY - 1));
+        if (rightValid && downValid) {
+            newX = originalX + 1;
+            newY = originalY - 1;
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX, newY));
+            }
         }
         
         // down left
-        if (leftValid && downValid &&
-        !board[Chessboard.convert(originalX - 1)][Chessboard.convert(originalY - 1)].isSameTeam(this)) {
-            temp.add(new Coordinate(originalX - 1, originalY - 1));
+        if (leftValid && downValid) {
+            newX = originalX - 1;
+            newY = originalY - 1;
+
+            if (evalSpot(board, newX, newY)) {
+                temp.add(new Coordinate(newX, newY));
+            }
         }
         
         return temp;
     }
-    
+
+    private boolean evalSpot (Piece[][] board, int x, int y) {
+        if (board[Chessboard.convert(x)][Chessboard.convert(y)] != null) {
+            return !this.isSameTeam(board[Chessboard.convert(x)][Chessboard.convert(y)]);
+        } else {
+            return true;
+        }
+    }
+
     private boolean checkMove (int newX, int newY, Chessboard board) {
         possibleSquares = possibleMove(board.getBoard());
         return validMove (newX, newY, board);
