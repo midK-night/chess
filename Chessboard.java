@@ -52,6 +52,10 @@ public class Chessboard {
         }
         update();
     }
+
+    //TODO: gameloop
+    //TODO: user control
+    //TODO: display
     
     public static int convert(int val) {
         return 9 - val - 1;

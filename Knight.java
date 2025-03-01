@@ -143,6 +143,8 @@ public class Knight extends Piece {
         
         return temp;
     }
+
+    //TODO: extract boolean algo
     
     private boolean checkMove (int newX, int newY, Chessboard board) {
         possibleSquares = possibleMove(board.getBoard());
