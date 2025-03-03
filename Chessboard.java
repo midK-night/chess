@@ -53,6 +53,20 @@ public class Chessboard {
         update();
     }
 
+    private boolean move(Piece piece, Coordinate newPoints, boolean isWhite) {
+        if (!piece.validMove(newPoints.getX(), newPoints.getY(), this)) return false;
+
+        if (getBoard()[newPoints.getX()][newPoints.getY()] != null) {
+            if (isWhite) {
+                black.remove(getBoard()[newPoints.getX()][newPoints.getY()]);
+            } else {
+                white.remove(getBoard()[newPoints.getX()][newPoints.getY()]);
+            }
+        }
+
+        return piece.move(newPoints.getX(), newPoints.getY(), this);
+    }
+
     //TODO: gameloop
     //TODO: user control
     //TODO: display
