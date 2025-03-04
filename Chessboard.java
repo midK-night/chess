@@ -67,6 +67,15 @@ public class Chessboard {
         return piece.move(newPoints.getX(), newPoints.getY(), this);
     }
 
+    private boolean gameIsOver(ArrayList<Piece> player) {
+        for (Piece p : player) {
+            if (p.getClass().equals(King.class)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //TODO: gameloop
     //TODO: user control
     //TODO: display
